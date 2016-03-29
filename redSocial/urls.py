@@ -11,8 +11,8 @@ urlpatterns = [
 
     url(r'^posts/',
     	include('posts.urls',namespace="posts")),
-
-
+    
+   
     
 
     

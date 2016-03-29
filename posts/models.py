@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 
+
 class Post(models.Model):
 	titulo=models.CharField(max_length=50)
 	slug=models.SlugField(max_length=50, blank=True,null=True)
@@ -16,6 +17,7 @@ class Post(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('posts:detalle',args=[self.pk])
+
 
 class Comentario(models.Model):
 	titulo=models.CharField(max_length=50)

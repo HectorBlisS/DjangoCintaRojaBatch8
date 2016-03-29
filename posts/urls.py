@@ -10,5 +10,9 @@ urlpatterns=[
 	url(r'^detalle/(?P<matti>\d+)',
 		views.PostDetailView.as_view(),
 		name="detalle"),
+
+	url(r'^api/$',
+		views.Api.as_view(),
+		name="api"),
 	
 ]

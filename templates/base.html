@@ -21,22 +21,22 @@
       <a href="#!" class="brand-logo">Logo</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        {%if request.user.is_authenticated%}
-        <li><span>Hola {{request.user.username}}</span></li>
-        <li><a href="{%url 'cuentas:logout'%}">Cerrar Sesión</a></li>
-        {%else%}
-        <li><a href="{%url 'cuentas:login'%}">Iniciar Sesión</a></li>
-        {%endif%}
+        <li>
+          {%if request.user.is_authenticated%}
+            Hola {{request.user.username}}!
+        </li>
+        <li>
+                      <a href="{%url 'cuentas:logout'%}">
+              Cerrar Sesión
+            </a>
 
+          {%else%}
+             <a href="{%url 'cuentas:login'%}">
+             Inicia Sesión</a>
+          {%endif%}
+        </li> 
       </ul>
-      <ul class="side-nav" id="mobile-demo">
-        {%if request.user.is_authenticated%}
-        <li><span>Hola {{request.user.username}}</span></li>
-        <li><a href="{%url 'cuentas:logout'%}">Cerrar Sesión</a></li>
-        {%else%}
-        <li><a href="{%url 'cuentas:login'%}">Iniciar Sesión</a></li>
-        {%endif%}
-      </ul>
+
     </div>
   </nav>
 
