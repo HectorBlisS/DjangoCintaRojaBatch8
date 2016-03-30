@@ -4,9 +4,41 @@
 
 {%block content%}
 
+{%for message in messages%}
+
+<h5 style="background-color:green; width:100%;">
+	{{message}}</h5>
+
+{%endfor%}
+
+<section class="container">
+
+
 <h1>{{post.titulo}}</h1>
 <p>{{post.fecha}}</p>
 <h2>{{post.cuerpo}}</h2>
 <h3>{{post.autor}}</h3>
 
+<form method="post" action="{%url 'posts:detalle' post.pk%}">
+	{%csrf_token%}
+	{{form.as_p}}
+	<input type="submit" class="btn green" value="Comentar"/>
+
+</form>
+
+{%for comment in comments%}
+
+****************************
+
+<h4>{{comment.name}} - {{comment.fecha}}</h4>
+<p>{{comment.cuerpo}}</p>
+
+{%empty%}
+
+----------------------------
+<h6 style="color:blue;">Aún no se han hecho comentarios U_U</h6>
+{%endfor%}
+
+
+</section>
 {%endblock content%}

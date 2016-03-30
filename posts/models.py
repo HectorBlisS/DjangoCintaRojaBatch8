@@ -20,15 +20,13 @@ class Post(models.Model):
 
 
 class Comentario(models.Model):
-	titulo=models.CharField(max_length=50)
+	post=models.ForeignKey(Post,related_name='comentarios',blank=True,null=True)
+	cuerpo=models.TextField(null=True,blank=True)
+	name=models.ForeignKey(User,related_name='autor',blank=True,null=True)
+	fecha=models.DateTimeField(auto_now=True,blank=True,null=True)
+
+	def __str__(self):
+		return 'comentario de {} en {}'.format(self.name,self.post)
 
 
-# class Post(models.Model):
-# 	titulo=models.CharField(max_length=50)
-# 	cuerpo=models.TextField()
-# 	fecha=models.DateTimeField(auto_now=True)
-# 	publicado=models.BooleanField(default=True)
-
-# 	def __str__(self):
-# 		return self.titulo
 

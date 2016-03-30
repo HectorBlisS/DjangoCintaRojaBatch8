@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comentario
 
 class PostAdmin(admin.ModelAdmin):
 	list_display=('titulo','slug','autor','fecha')
@@ -10,3 +10,9 @@ class PostAdmin(admin.ModelAdmin):
 	ordering=['fecha']
 
 admin.site.register(Post, PostAdmin)
+
+class ComentarioAdmin(admin.ModelAdmin):
+	list_display=('post','name','fecha')
+	search_fields=('cuerpo',)
+
+admin.site.register(Comentario, ComentarioAdmin)
