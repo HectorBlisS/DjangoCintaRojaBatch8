@@ -9,6 +9,10 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
+# Herramienta para restringir acceso
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 class PostView(View):
 	def get(self,request):
@@ -26,6 +30,7 @@ class PostView(View):
 		return redirect('posts:todos')
 
 class PostDetailView(View):
+	@method_decorator(login_required(login_url='cuentas:login'))
 	def get(self,request,matti):
 		post=Post.objects.get(pk=matti)
 		form=ComentarioForm()

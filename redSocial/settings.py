@@ -26,10 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'posts',
     'comentarios',
     'otramas',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -118,5 +118,20 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,"static"),)
 from django.core.urlresolvers import reverse_lazy
 
 LOGIN_REDIRECT_URL = reverse_lazy('posts:todos')
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '861478353962698'
+SOCIAL_AUTH_FACEBOOK_SECRET = '69d7cc832a77fe0ef03a7ae1d59f2429'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range'
+}
 
 
