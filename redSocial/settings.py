@@ -13,7 +13,7 @@ SECRET_KEY = '(h91&zlz76$+edsn-z##2(lqm+pz)=@zt=vb^oum#fzsq$r(_)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -56,6 +56,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                    # Acceso a la variable MEDIA_URL
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -133,5 +135,8 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'locale': 'ru_RU',
   'fields': 'id, name, email, age_range'
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 

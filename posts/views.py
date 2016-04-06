@@ -13,11 +13,14 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+# guardar la imagen
+from django.core.files.base import ContentFile
+
 
 class PostView(View):
 	def get(self,request):
 		template="posts/todos.html"
-		posts=Post.objects.all()
+		posts=Post.objects.all().order_by('-fecha')
 		form=PostForm()
 		context={
 		'posts':posts,
@@ -25,8 +28,10 @@ class PostView(View):
 		}
 		return render(request,template,context)
 	def post(self, request):
-		form=PostForm(request.POST)
-		form.save()
+		form=PostForm(request.POST,request.FILES)
+		obj=form.save(commit=False)
+		obj.autor=request.user
+		obj.save()
 		return redirect('posts:todos')
 
 class PostDetailView(View):
