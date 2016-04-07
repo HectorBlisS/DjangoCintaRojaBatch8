@@ -25,7 +25,7 @@ class PostView(View):
 		}
 		return render(request,template,context)
 	def post(self, request):
-		form=PostForm(request.POST)
+		form=PostForm(request.POST, request.FILES)
 		form.save()
 		return redirect('posts:todos')
 
